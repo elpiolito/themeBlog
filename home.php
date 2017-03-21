@@ -11,6 +11,11 @@
                     <article class="post hentry published" role="article" id="post-<?php echo $plxShow->artId(); ?>">
 
                         <header class="entry-header">
+                            <div class="entry-category">
+                                <span class="cat-links">
+                                    <?php $plxShow->artCat() ?>
+                                </span>
+                            </div>
                             <h1 class="entry-title">
                                 <?php $plxShow->artTitle('link'); ?>
                             </h1>
@@ -31,16 +36,18 @@
                             </div>
                         </header>
 
-                        <section>
+                        <section class="entry-content">
                             <?php $plxShow->artThumbnail(); ?>
                             <?php $plxShow->artChapo(); ?>
                         </section>
 
-                        <footer>
-                            <small>
-                                <?php $plxShow->lang('CLASSIFIED_IN') ?> : <?php $plxShow->artCat() ?> -
-                                <?php $plxShow->lang('TAGS') ?> : <?php $plxShow->artTags() ?>
-                            </small>
+                        <footer class="entry-footer">
+                            <div class="entry-bottom small-part">
+                                <span class="tags-links">
+                                    <i class="fa fa-tags space-right"></i>
+                                    <?php $plxShow->artTags() ?>
+                                </span>
+                            </div>
                         </footer>
 
                     </article>
