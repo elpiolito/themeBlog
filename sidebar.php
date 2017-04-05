@@ -24,7 +24,7 @@
         </ul>
     </aside>
 
-    <aside class="widget">
+    <aside class="widget wp_widget_tag_cloud" >
         <h3 class="widget-title">
             <?php $plxShow->lang('TAGS'); ?>
         </h3>
@@ -54,13 +54,13 @@
         </ul>
     </aside>
 
-    <aside class="widget">
+    <aside class="widget wp_widget_tag_cloud">
         <h3 class="widget-title">
             RSS
         </h3>
-        <ul class="rss-list unstyled-list">
-            <li><a href="<?php $plxShow->urlRewrite('feed.php?rss') ?>" title="<?php $plxShow->lang('ARTICLES_RSS_FEEDS'); ?>"><?php $plxShow->lang('ARTICLES'); ?></a></li>
-            <li><a href="<?php $plxShow->urlRewrite('feed.php?rss/commentaires'); ?>" title="<?php $plxShow->lang('COMMENTS_RSS_FEEDS') ?>"><?php $plxShow->lang('COMMENTS'); ?></a></li>
+        <ul class="tag-list">
+            <li class="tag" ><a href="<?php $plxShow->urlRewrite('feed.php?rss') ?>" class="button" title="<?php $plxShow->lang('ARTICLES_RSS_FEEDS'); ?>"><i class="fa fa-rss-square"></i><?php $plxShow->lang('ARTICLES'); ?></a></li>
+            <li class="tag" ><a href="<?php $plxShow->urlRewrite('feed.php?rss/commentaires'); ?>" class="button" title="<?php $plxShow->lang('COMMENTS_RSS_FEEDS') ?>"><i class="fa fa-rss-square"></i><?php $plxShow->lang('COMMENTS'); ?></a></li>
         </ul>
     </aside>
 
