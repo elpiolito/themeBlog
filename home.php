@@ -1,7 +1,7 @@
 <?php include(dirname(__FILE__).'/header.php'); ?>
 
 <div id="content" class="site-content">
-    <div id="primary" class="content-area{{ is_sidebar ? '' : ' full-width' }}">
+    <div id="primary" class="content-area">
         <main id="main" class="site-main" role="main">
 
             <section class="col sml-12 med-8">
