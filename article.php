@@ -1,32 +1,51 @@
 <?php include(dirname(__FILE__).'/header.php'); ?>
 
-	<main class="main grid" role="main">
+<div id="content" class="site-content">
+    <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
 
-		<section class="col sml-12 med-8">
+		<section>
 
-			<article class="article" role="article" id="post-<?php echo $plxShow->artId(); ?>">
+			<article class="post hentry published" role="article" id="post-<?php echo $plxShow->artId(); ?>">
 
-				<header>
-					<h1>
+                <header class="entry-header">
+                    <div class="entry-category">
+                                <span class="cat-links">
+                                    <?php $plxShow->artCat() ?>
+                                </span>
+                    </div>
+					<h1 class="entry-title">
 						<?php $plxShow->artTitle(); ?>
 					</h1>
-					<small>
-						<?php $plxShow->lang('WRITTEN_BY'); ?> <?php $plxShow->artAuthor() ?> -
-						<time datetime="<?php $plxShow->artDate('#num_year(4)-#num_month-#num_day'); ?>"><?php $plxShow->artDate('#num_day #month #num_year(4)'); ?></time> -
-						<a href="<?php $plxShow->artUrl(); ?>#comments" title="<?php $plxShow->artNbCom(); ?>"><?php $plxShow->artNbCom(); ?></a>
-					</small>
+                    <div class="entry-meta small-part">
+                                <span class="posted-on">
+                                    <i class="fa fa-clock-o space-left-right"></i> <time datetime="<?php $plxShow->artDate('#num_year(4)-#num_month-#num_day'); ?>"><?php $plxShow->artDate('#num_day #month #num_year(4)'); ?></time>
+                                </span>
+                        <span class="byline">
+                                    <i class="fa fa-user space-left-right"></i>
+                                    <span class="author vcard">
+                                        <?php $plxShow->artAuthor(); ?>
+                                    </span>
+                                </span>
+                        <span class="comment-link">
+                                    <i class="fa fa-comments-o space-left-right"></i>
+                            <?php $plxShow->artNbCom(); ?>
+                                </span>
+                    </div>
 				</header>
 
-				<section>
+				<section class="entry-content">
 					<?php $plxShow->artThumbnail(); ?>
 					<?php $plxShow->artContent(); ?>
 				</section>
 
-				<footer>
-					<small>
-						<?php $plxShow->lang('CLASSIFIED_IN') ?> : <?php $plxShow->artCat() ?> -
-						<?php $plxShow->lang('TAGS') ?> : <?php $plxShow->artTags() ?>
-					</small>
+				<footer class="entry-footer">
+                    <div class="entry-bottom small-part">
+                                <span class="tags-links">
+                                    <i class="fa fa-tags space-right"></i>
+                                    <?php $plxShow->artTags() ?>
+                                </span>
+                    </div>
 				</footer>
 
 			</article>
@@ -37,8 +56,11 @@
 
 		</section>
 
-		<?php include(dirname(__FILE__).'/sidebar.php'); ?>
+    </main>
+    </div>
+    <?php include(dirname(__FILE__).'/sidebar.php'); ?>
+</div>
 
-	</main>
+
 
 <?php include(dirname(__FILE__).'/footer.php'); ?>

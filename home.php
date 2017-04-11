@@ -4,7 +4,7 @@
     <div id="primary" class="content-area">
         <main id="main" class="site-main" role="main">
 
-            <section class="col sml-12 med-8">
+            <section>
 
                 <?php while($plxShow->plxMotor->plxRecord_arts->loop()): ?>
 
@@ -54,7 +54,7 @@
 
                 <?php endwhile; ?>
 
-                <nav class="pagination text-center">
+                <nav class="navigation paging-navigation text-center">
                     <?php $plxShow->pagination(); ?>
                 </nav>
 
