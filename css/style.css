@@ -1558,7 +1558,7 @@ aside ul li:last-child {
 }
 #comments ol ol article {
 }
-#comments article footer img {
+#comments article header img {
 	float: left;
 	margin-right: 1.5em;
 	border-radius: 50%;
