@@ -31,9 +31,11 @@
                             <p class="content_com type-<?php $plxShow->comType(); ?>"><?php $plxShow->comContent(); ?></p>
                         </div>
 
-                        <div class="reply">
+                        <?php
+ /*                       <div class="reply">
                             <a rel="nofollow" class="comment-reply-link smallPart" href="<?php $plxShow->artUrl(); ?>#form" onclick="replyCom('<?php $plxShow->comIndex() ?>')"><?php $plxShow->lang('REPLY'); ?><i class="fa fa-reply spaceLeft"></i></span></a>
                         </div>
+                        */?>
 
 
                     </article>
@@ -50,82 +52,74 @@
 
     <?php if($plxShow->plxMotor->plxRecord_arts->f('allow_com') AND $plxShow->plxMotor->aConf['allow_com']): ?>
 
-        <h2>
-            <?php $plxShow->lang('WRITE_A_COMMENT') ?>
-        </h2>
+        <div id="respond" class="comment-respond">
+            <h3 id="reply-title" class="comment-reply-title">
+                <?php $plxShow->lang('WRITE_A_COMMENT') ?>
+            </h3>
 
-        <form id="form" action="<?php $plxShow->artUrl(); ?>#form" method="post">
+            <p id="form" action="<?php $plxShow->artUrl(); ?>#form" method="post" id="commentform" class="comment-form">
 
-            <fieldset>
+                <p class="comment-form-author">
+                    <label for="id_name"><i class="fa fa-user"></i><span class="screen-reader-text"><?php $plxShow->lang('NAME') ?></span></label>
+                    <input id="id_name" name="name" type="text"  size="20" aria-required='true' maxlength="30" placeholder="<?php $plxShow->comGet('name',''); ?>"/>
+                </p>
 
-                <div class="grid">
-                    <div class="col sml-12">
-                        <label for="id_name"><?php $plxShow->lang('NAME') ?> :</label>
-                        <input id="id_name" name="name" type="text" size="20" value="<?php $plxShow->comGet('name',''); ?>" maxlength="30" />
-                    </div>
-                </div>
-                <div class="grid">
-                    <div class="col sml-12 lrg-6">
-                        <label for="id_mail"><?php $plxShow->lang('EMAIL') ?> :</label>
-                        <input id="id_mail" name="mail" type="text" size="20" value="<?php $plxShow->comGet('mail',''); ?>" />
-                    </div>
-                    <div class="col sml-12 lrg-6">
-                        <label for="id_site"><?php $plxShow->lang('WEBSITE') ?> :</label>
-                        <input id="id_site" name="site" type="text" size="20" value="<?php $plxShow->comGet('site',''); ?>" />
-                    </div>
-                </div>
-                <div class="grid">
-                    <div class="col sml-12">
-                        <div id="id_answer"></div>
-                        <label for="id_content" class="lab_com"><?php $plxShow->lang('COMMENT') ?> :</label>
-                        <textarea id="id_content" name="content" cols="35" rows="6"><?php $plxShow->comGet('content',''); ?></textarea>
-                    </div>
-                </div>
+                <p class="comment-form-email">
+                    <label for="id_mail"><i class="fa fa-envelope"></i><span class="screen-reader-text"><?php $plxShow->lang('EMAIL') ?></span></label>
+                    <input id="id_mail" name="mail" type="text"  size="20" aria-required='true' placeholder="<?php $plxShow->comGet('mail',''); ?>"/>
+                </p>
 
-                <?php $plxShow->comMessage('<p id="com_message" class="text-red"><strong>#com_message</strong></p>'); ?>
+                <p class="comment-form-url">
+                    <label for="id_site"><i class="fa fa-link"></i><span class="screen-reader-text"><?php $plxShow->lang('WEBSITE') ?></span></label>
+                    <input id="id_site" name="site" type="text" size="20" placeholder="<?php $plxShow->comGet('site',''); ?>"/>
+                </p>
+
+
+                <p class="comment-form-comment">
+                    <label for="id_content"><i class="fa fa-comments"></i><span class="screen-reader-text"><?php $plxShow->lang('COMMENT') ?></span></label>
+                    <textarea id="id_content" name="content" rows="8" aria-required="true" placeholder="<?php $plxShow->comGet('content',''); ?>"></textarea>
+                </p>
 
                 <?php if($plxShow->plxMotor->aConf['capcha']): ?>
 
-                    <div class="grid">
-                        <div class="col sml-12">
-                            <label for="id_rep"><strong><?php echo $plxShow->lang('ANTISPAM_WARNING') ?></strong></label>
-                            <?php $plxShow->capchaQ(); ?>
-                            <input id="id_rep" name="rep" type="text" size="2" maxlength="1" style="width: auto; display: inline;" />
-                        </div>
-                    </div>
+                    <p class="comment-form-comment">
+                        <label for="id_rep"><strong> <?php echo $plxShow->lang('ANTISPAM_WARNING') ?></strong></label>
+                        <?php $plxShow->capchaQ(); ?>
+                        <input id="id_rep" name="rep" type="text" size="2" maxlength="1" style="width: auto; display: inline;"/>
+                    </p>
 
                 <?php endif; ?>
 
-                <div class="grid">
-                    <div class="col sml-12">
-                        <input type="hidden" id="id_parent" name="parent" value="<?php $plxShow->comGet('parent',''); ?>" />
-                        <input class="blue" type="submit" value="<?php $plxShow->lang('SEND') ?>" />
-                    </div>
-                </div>
 
-            </fieldset>
-
-        </form>
+                <p class="form-submit">
+                    <input name="submit" type="submit" id="submit" class="submit" value="<?php $plxShow->lang('SEND') ?>"/>
+                    <input type="hidden" id="id_parent" name="parent" value="<?php $plxShow->comGet('parent',''); ?>" />
+                </p>
 
 
+                <?php $plxShow->comMessage('<p id="com_message" class="text-red"><strong>#com_message</strong></p>'); ?>
 
-        <script>
-            function replyCom(idCom) {
-                document.getElementById('id_answer').innerHTML='<?php $plxShow->lang('REPLY_TO'); ?> :';
-                document.getElementById('id_answer').innerHTML+=document.getElementById('com-'+idCom).innerHTML;
-                document.getElementById('id_answer').innerHTML+='<a rel="nofollow" href="<?php $plxShow->artUrl(); ?>#form" onclick="cancelCom()"><?php $plxShow->lang('CANCEL'); ?></a>';
-                document.getElementById('id_answer').style.display='inline-block';
-                document.getElementById('id_parent').value=idCom;
-                document.getElementById('id_content').focus();
-            }
-            function cancelCom() {
-                document.getElementById('id_answer').style.display='none';
-                document.getElementById('id_parent').value='';
-                document.getElementById('com_message').innerHTML='';
-            }
-            var parent = document.getElementById('id_parent').value;
-            if(parent!='') { replyCom(parent) }
-        </script>
+            </form>
+
+
+            <script>
+                function replyCom(idCom) {
+                    document.getElementById('id_answer').innerHTML='<?php $plxShow->lang('REPLY_TO'); ?> :';
+                    document.getElementById('id_answer').innerHTML+=document.getElementById('com-'+idCom).innerHTML;
+                    document.getElementById('id_answer').innerHTML+='<a rel="nofollow" href="<?php $plxShow->artUrl(); ?>#form" onclick="cancelCom()"><?php $plxShow->lang('CANCEL'); ?></a>';
+                    document.getElementById('id_answer').style.display='inline-block';
+                    document.getElementById('id_parent').value=idCom;
+                    document.getElementById('id_content').focus();
+                }
+                function cancelCom() {
+                    document.getElementById('id_answer').style.display='none';
+                    document.getElementById('id_parent').value='';
+                    document.getElementById('com_message').innerHTML='';
+                }
+                var parent = document.getElementById('id_parent').value;
+                if(parent!='') { replyCom(parent) }
+            </script>
+        </div>
 
     <?php else: ?>
 
