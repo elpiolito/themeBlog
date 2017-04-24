@@ -8,6 +8,10 @@
 
 			<article class="post hentry published" role="article" id="post-<?php echo $plxShow->artId(); ?>">
 
+                <figure class="entry-featuredImg">
+                    <?php $plxShow->artThumbnail() ?>
+                </figure>
+
                 <header class="entry-header">
                     <div class="entry-category">
                                 <span class="cat-links">
